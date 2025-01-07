@@ -28,7 +28,7 @@ jobs:
 
   publish:
     machine:
-      image: ubuntu:22.04
+      image: ubuntu-2004:current
     resource_class: large
     steps:
       - docker/check:
