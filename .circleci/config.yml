@@ -36,7 +36,7 @@ jobs:
           docker-password: DOCKER_PASSWORD
       - run: |
           echo "Building image"
-          docker login -u DOCKER_USERNAME -p DOCKER_PASSWORD
+          docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
           docker build -t 'assignment4:latest' .
           docker push 'liewchooichin/assignment4:latest'
 
