@@ -26,14 +26,15 @@ jobs:
           npm run test
 
   publish:
-    docker:
-      - image: cimg/node:16.10
+    machine:
+      image: ubuntu:22.04
+    resource_class: large
     steps:
       - docker/check:
           docker-username: DOCKER_USERNAME
           docker-password: DOCKER_PASSWORD
       - docker/push:
-          images: 'circleci/mynode:latest'
+          images: 'cimg/node:16.10'
 
 workflows:
   simple_workflow:
@@ -43,6 +44,9 @@ workflows:
           requires:
             - build
       - publish:
+          context:
+            - build-env-vars
+            - docker-hub-creds
           requires:
             - build
             - test
