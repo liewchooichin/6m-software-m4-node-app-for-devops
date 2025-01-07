@@ -27,15 +27,18 @@ jobs:
           npm run test
 
   publish:
-    machine:
-      image: ubuntu-2004:current
-    resource_class: large
+    docker:
+      - image: cimg/node:16.10
     steps:
+      - checkout
       - docker/check:
           docker-username: DOCKER_USERNAME
           docker-password: DOCKER_PASSWORD
-      - docker/push:
-          image: 'cimg/node:16.10'
+      - run: |
+          echo "Building image"
+          docker login -u DOCKER_USERNAME -p DOCKER_PASSWORD
+          docker build -t 'assignment4:latest' .
+          docker push 'liewchooichin/assignment4:latest'
 
 workflows:
   simple_workflow:
