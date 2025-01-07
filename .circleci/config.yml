@@ -35,7 +35,7 @@ jobs:
           docker-username: DOCKER_USERNAME
           docker-password: DOCKER_PASSWORD
       - docker/push:
-          images: 'cimg/node:16.10'
+          image: 'cimg/node:16.10'
 
 workflows:
   simple_workflow:
