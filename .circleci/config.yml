@@ -25,6 +25,16 @@ jobs:
           echo "Running tests"
           npm run test
 
+  publish:
+    docker:
+      - image: cimg/node:16.10
+    steps:
+      - docker/check:
+          docker-username: DOCKER_USERNAME
+          docker-password: DOCKER_PASSWORD
+      - docker/push:
+          images: 'circleci/mynode:latest'
+
 workflows:
   simple_workflow:
     jobs:
@@ -32,4 +42,8 @@ workflows:
       - test:
           requires:
             - build
+      - publish:
+          requires:
+            - build
+            - test
 
