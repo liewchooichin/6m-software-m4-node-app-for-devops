@@ -7,7 +7,7 @@ The file for the **publish** assignment is in folder **.circleci/publish_config.
 In the assignment, I pushed the image named **assignment5** to the repo **liewchooichin/assignment5**.
 
 Screenshot of the repo.
-<img src="./assignment5.png" alt="assignment 5 in repo">
+<img src="./assignment_5.png" alt="assignment 5 in repo">
 
 
 
