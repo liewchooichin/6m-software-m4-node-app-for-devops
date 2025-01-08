@@ -27,7 +27,7 @@ jobs:
           npm run test
   publish:
     docker:
-      - image: cimg/base:current
+      - image: ubuntu-2004:current
     resource_class: small
     steps:
       - checkout
