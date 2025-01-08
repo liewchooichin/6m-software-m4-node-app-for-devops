@@ -27,7 +27,8 @@ jobs:
           npm run test
   publish:
     docker:
-      - image: cimg/node:16.10
+      - image: cimg/base:current
+    resource_class: small
     steps:
       - checkout
       - docker/check:
