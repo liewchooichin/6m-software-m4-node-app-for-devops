@@ -37,7 +37,7 @@ jobs:
       - run: |
           echo "Building image"
           service docker status
-          service docker start
+          sudo service docker start
           service docker status
           docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
           docker build -t 'assignment4:latest' .
