@@ -40,7 +40,6 @@ jobs:
           image: liewchooichin/assignment5
       - run: |
           echo "Building image"
-          service docker status
 
 workflows:
   simple_workflow:
