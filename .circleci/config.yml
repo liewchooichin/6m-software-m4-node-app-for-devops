@@ -2,8 +2,8 @@ version: 2.1
 obrs:
   docker: circleci/docker@2.8.1
 jobs:
-    machine-job:
-      machine: cimg/node:16.10
+    docker:
+      - image: cimg/node:16.10
     steps:
       - docker/check:
           docker-username: DOCKER_USERNAME
