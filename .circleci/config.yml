@@ -34,14 +34,13 @@ jobs:
       - docker/check:
           docker-username: DOCKER_USERNAME
           docker-password: DOCKER_PASSWORD
+      - docker/build:
+          image: 'liewchooichin/assignment5:latest'
+      - docker/push:
+          image: 'liewchooichin/assignment5:latest'
       - run: |
           echo "Building image"
           service docker status
-          sudo service docker start
-          service docker status
-          docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
-          docker build -t 'assignment4:latest' .
-          docker push 'liewchooichin/assignment4:latest'
 
 workflows:
   simple_workflow:
