@@ -1,5 +1,16 @@
 # Application for Software Engineering DevOps (Module 4)
 
+## Assignment 5
+
+The file for the **publish** assignment is in folder **.circleci/publish_config.yml**
+
+In the assignment, I pushed the image named **assignment5** to the repo **liewchooichin/assignment5**.
+
+Screenshot of the repo.
+<img src="./assignment5.png" alt="assignment 5 in repo">
+
+
+
 ## Brief
 
 Node application is lightweight and is easy to use as sample application for this DevOps module. Please read on to learn about the basic (Terminal) command to build, test and run a Node application.
