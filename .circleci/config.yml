@@ -27,7 +27,7 @@ jobs:
           npm run test
   publish:
     docker:
-      - image: ubuntu-2004:current
+      - image: cimg/base:current
     resource_class: small
     steps:
       - checkout
@@ -37,6 +37,7 @@ jobs:
       - run: |
           echo "Building image"
           docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
+          service docker status
           docker build -t 'assignment4:latest' .
           docker push 'liewchooichin/assignment4:latest'
 
