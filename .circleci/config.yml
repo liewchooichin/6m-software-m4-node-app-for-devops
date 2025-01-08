@@ -1,6 +1,6 @@
 version: 2.1
 obrs:
-  node: circleci/node@5.0.1 
+  docker: circleci/node@5.0.1 
 jobs:
   publish:
     docker:
