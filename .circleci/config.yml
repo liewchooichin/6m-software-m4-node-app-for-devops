@@ -1,7 +1,8 @@
 version: 2.1
 obrs:
-  docker: circleci/docker@2.8.1
+  node: circleci/node@5.0.1 
 jobs:
+  publish:
     docker:
       - image: cimg/node:16.10
     steps:
@@ -16,9 +17,9 @@ jobs:
           command: |
             echo "Pushing image"
 workflows:
-  my-workflow:  
+  simple-workflow:  
     jobs:
-      - machine-job:
+      - publish:
           context:
             - build-env-vars
             - docker-hub-creds
