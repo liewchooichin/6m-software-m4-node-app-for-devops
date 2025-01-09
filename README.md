@@ -1,5 +1,13 @@
 # Application for Software Engineering DevOps (Module 4)
 
+## Assignment 6
+
+Branches: 
+  - **testbranch**
+  - **releasebranch**
+
+The **config.yml** is edited to include conditional jobs based on branches.
+
 ## Assignment 5
 
 The file for the **publish** assignment is in folder **.circleci/publish_config.yml**
