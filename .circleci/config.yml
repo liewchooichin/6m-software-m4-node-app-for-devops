@@ -54,7 +54,7 @@ jobs:
           docker-password: DOCKER_PASSWORD
       - docker/build:
           image: $IMAGE_NAME
-      - synk/scan: 
+      - snyk/scan: 
           docker-image-name: $IMAGE_NAME
 
 workflows:
