@@ -53,9 +53,9 @@ jobs:
           docker-username: DOCKER_USERNAME
           docker-password: DOCKER_PASSWORD
       - docker/build:
-          image: $IMAGE_NAME
+          image: liewchooichin/assignment5
       - snyk/scan: 
-          docker-image-name: $IMAGE_NAME
+          docker-image-name: liewchooichin/assignment5
 
 workflows:
   simple_workflow:
