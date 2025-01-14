@@ -64,6 +64,8 @@ jobs:
       - checkout
       - setup_remote_docker
       - docker/check
+          docker-username: DOCKER_USERNAME
+          docker-password: DOCKER_PASSWORD
       - run: docker build -t liewchooichin/assignment5 .
       - snyk/install
       - run: |
