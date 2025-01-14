@@ -52,8 +52,7 @@ jobs:
       - docker/check:
           docker-username: DOCKER_USERNAME
           docker-password: DOCKER_PASSWORD
-      - docker/build:
-          image: liewchooichin/assignment5
+      - run: docker build -t liewchooichin/assignment5 .
       - snyk/scan: 
           docker-image-name: liewchooichin/assignment5
 
