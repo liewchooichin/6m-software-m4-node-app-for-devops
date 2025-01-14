@@ -64,6 +64,7 @@ workflows:
           filters:
             branches:
               only: 
+                - main
                 - testbranch
                 - releasebranch
       - test:
