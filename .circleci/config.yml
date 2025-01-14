@@ -2,7 +2,7 @@ version: 2.1
 
 orbs:
   node: circleci/node@5.0.1
-  docker: circleci/docker@2.1.4
+  docker: circleci/docker@1.4.0
   snyk: snyk/snyk@1.5.0
 
 jobs:
@@ -16,6 +16,31 @@ jobs:
       - run: |
           echo "Install dependencies"
           npm install
+  test:
+    docker:
+      - image: cimg/node:16.10
+    steps:
+      - checkout
+      - node/install-packages:
+          pkg-manager: npm
+      - run: |
+          echo "Running tests"
+          npm run test
+  publish:
+    docker:
+      - image: cimg/base:current
+    steps:
+      - checkout
+      - setup_remote_docker
+      - docker/check:
+          docker-username: DOCKER_USERNAME
+          docker-password: DOCKER_PASSWORD
+      - docker/build:
+          image: liewchooichin/assignment5
+      - docker/push:
+          image: liewchooichin/assignment5
+      - run: |
+          echo "Building image"
   scan:
     docker:
       - image: cimg/node:16.10
@@ -23,19 +48,46 @@ jobs:
       IMAGE_NAME: liewchooichin/assignment5
     steps:
       - checkout
-      - setup_remote_docker      
-      - docker/check
-      - run: docker build -t $IMAGE_NAME .
-      - snyk/scan: 
+      - setup_remote_docker
+      - docker/check:
+          docker-username: DOCKER_USERNAME
+          docker-password: DOCKER_PASSWORD
+      - docker/build:
+          image: $IMAGE_NAME
+      - synk/scan: 
           docker-image-name: $IMAGE_NAME
 
 workflows:
   simple_workflow:
     jobs:
-      - build
+      - build:
+          filters:
+            branches:
+              only: 
+                - testbranch
+                - releasebranch
+      - test:
+          filters:
+            branches:
+              only: 
+                - testbranch
+                - releasebranch
+          requires:
+              - build
+      - publish:
+          filters:
+            branches:
+              only: releasebranch
+          context:
+            - build-env-vars
+            - docker-hub-creds
+          requires:
+            - build
+            - test
       - scan:
           requires:
             - build
           filters:
             branches:
               only: main
+            
