@@ -55,7 +55,19 @@ jobs:
       - run: docker build -t liewchooichin/assignment5 .
       - snyk/scan: 
           docker-image-name: liewchooichin/assignment5
-
+  codescan:
+    docker:
+      - image: cimg/node:16.10
+    steps:
+      - checkout
+      - setup_remote_docker
+      - docker/check
+      - run: docker build -t liewchooichin/assignment5 .
+      - snyk/install
+      - run: |
+          snyk code test
+          echo "Static code scanning"
+    
 workflows:
   simple_workflow:
     jobs:
@@ -85,6 +97,12 @@ workflows:
             - build
             - test
       - scan:
+          requires:
+            - build
+          filters:
+            branches:
+              only: main
+      - codescan:
           requires:
             - build
           filters:
