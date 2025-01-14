@@ -58,6 +58,8 @@ jobs:
   codescan:
     docker:
       - image: cimg/node:16.10
+    environment:
+      IMAGE_NAME: liewchooichin/assignment5
     steps:
       - checkout
       - setup_remote_docker
@@ -66,7 +68,6 @@ jobs:
       - snyk/install
       - run: |
           snyk code test
-          echo "Static code scanning"
     
 workflows:
   simple_workflow:
